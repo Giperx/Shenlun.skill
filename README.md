@@ -287,7 +287,7 @@ python3 _tools/export_image.py examples/2021-guokao-subprovincial/answer.md outp
 
 完整例子见[原考试题目](examples/2021-guokao-subprovincial/prompt.md)、[原回答](examples/2021-guokao-subprovincial/answer.md)和[宋体长图](examples/2021-guokao-subprovincial/answer.png)。更多参数与核对办法见[图像导出规则](skills/shared/references/image-export-rules.md)。
 
-### 讲义文本的维护与安装
+### 资料文本的维护与安装
 
 三份饮冰TXT在 `_sources/饮冰说申论/讲义提取/` 维护，用以下工具同步到技能内。安装器会同时检查、安装三份文本、页码索引和图像导出工具；安装后的查阅与导出不依赖 `_sources` 或 `_tools` 目录。
 
@@ -295,6 +295,13 @@ python3 _tools/export_image.py examples/2021-guokao-subprovincial/answer.md outp
 python3 _tools/sync_yinbing_sources.py
 python3 _tools/sync_yinbing_sources.py --check
 python3 _tools/install_skills.py --dest /path/to/agent/skills --mode copy
+```
+
+参考书的合并OCR、141页逐页文本和字数元数据在 [`_sources/参考书/`](_sources/参考书/README.md) 维护。已去除重复页脚水印，保留原署名和声明；修改合并全文后运行以下命令，重建技能内十个分卷并核对页码与内容一致性：
+
+```bash
+python3 _tools/sync_topic_sources.py
+python3 _tools/sync_topic_sources.py --check
 ```
 
 ## 文件结构
@@ -333,7 +340,7 @@ shenlun-master/
 │       │   └── image-reading-rules.md    #   图片识读规范
 │       └── scripts/                     #   Word导出与黑色宋体PNG导出
 ├── _tools/                               # 提取、讲义同步、长图导出与安装入口
-├── _sources/                             # 仅放行三份饮冰讲义TXT，其他原料忽略
+├── _sources/                             # 三份饮冰TXT、参考书OCR与必要元数据
 ├── examples/2021-guokao-subprovincial/     # 原考试题目、完整回答与宋体长图示例
 └── shenlun-web/                          # 独立网页版（自己的 git 仓库，不随 skill 发布）
 
@@ -341,8 +348,8 @@ shenlun-master/
 错题库/                                    # 使用者个人错题库：INDEX.md + entries.md
 ```
 
-> **关于 `_sources/`**：按维护者要求，仅分发三份饮冰讲义的提取TXT；保留物理页码、来源和识别状态，权利归原权利人，不纳入MIT许可。其他原始PDF、笔记图片与本地原料仍忽略。
-> 安装包在 `references/yinbing-source-text/` 内带有同内容副本，便于独立安装后按页核对。
+> **关于 `_sources/`**：按维护者要求，分发三份饮冰讲义提取TXT，以及参考书的合并OCR、逐页TXT和必要元数据；保留物理页码、来源和识别状态，权利归原权利人，不纳入MIT许可。其他原始PDF、笔记图片与本地原料仍忽略。
+> 安装包在 `references/yinbing-source-text/` 和 `references/topic-library/source-text/` 内带有对应文本，便于独立安装后按页核对。
 >
 > **关于 `错题库/`**：记录使用者本人的失分点类型与频次，含个人作答与成绩，**同样不进公开仓库**，首次批改时自动创建。
 
@@ -365,7 +372,7 @@ shenlun-master/
 
 - 方法论整理与第三方原文分别标识。按维护者明确要求，提交三份饮冰讲义TXT及安装版副本，见[讲义原文索引](skills/shenlun-dawenti/references/yinbing-source-text/INDEX.md)。
 - 参考书OCR放在 `topic-library/source-text/`；它与饮冰讲义TXT均保留来源、识别状态及原权利声明，**不属于MIT授权范围**，不声称取得原作者额外授权。
-- `_sources/` 仅放行指定的三份TXT及说明，原PDF、笔记图片、登录信息与个人数据仍不分发。
+- `_sources/` 仅放行指定饮冰TXT、参考书OCR、必要元数据及说明，原PDF、笔记图片、登录信息与个人数据仍不分发。
 
 ### 可信度标注（本项目的做法）
 
@@ -394,6 +401,7 @@ shenlun-master/
 
 | 日期 | 变更内容 |
 |------|---------|
+| 2026-11-06 | 清理参考书141页OCR中的重复页脚水印及错字变体；同步合并全文、逐页TXT与技能内分卷。分发必要OCR维护源和字数元数据，新增可复现的清理、重建及一致性检查工具。 |
 | 2026-11-06 | 完善饮冰论点来源优先级与优劣筛选、300字四法模板、马哲点题及背诵迁移；完整作文逐段择法且至少一段用马哲。分发三份讲义TXT及独立安装副本，增加同步检查；新增附原考试题干的黑色宋体长图工具与2021副省卷示例。 |
 | 2026-11-06 | 新增第三方参考书的话题查阅层：九类83个入口、36条独立候选判断及证据边界，附141页按话题分卷的参考书OCR；区分话题积累与预测。融入饮冰说申论：论点提取、四法论证、段落迁移与改写；补齐3份讲义与51张笔记图片的来源索引；校准任务路由与估分边界，增加包含shared的可移植安装器。 |
 | 2026-09-13 | **拆分为三个 skill**：`shenlun-router`（总调度：输入处理／真题识别／命题预判／错题库／分派）+ `shenlun-xiaoti`（小题）+ `shenlun-dawenti`（大作文），共用资源归入 `skills/shared/`。目的：**小题任务不再加载大作文整库，反之亦然**。⚠️ 安装方式变更——三个 skill 须各自作为技能目录直接子目录（技能扫描只认单层），见「安装」节。<br>**README 重排**：新增 hero + 徽章 + 锚点导航、「你说／我懂」触发对照表、题型速查表、**`效果示例`**（三段完整对话，标注为示意示例）；`致谢` 扩为 **`来源与声明`**（来源、版权边界、可信度标注体系、已证伪清单）。架构与安装合并。<br>**借鉴同类项目补三处**：① 小马哥库补**文种格式要素对照表**（7 类 × 标题/称谓/落款）+ 正文四段结构（原笔记有、库里漏做）；② 错题库加**归因第二层**（知识盲区／技巧不熟／粗心大意／时间不够，与"丢什么"叠加，决定不同练法）；③ 白鹭逻辑阅读补**条件／假设关系**（标注非白鹭原料、待核实）。<br>**补 LICENSE 文件**（此前是空头声明）：README 徽章链到 `LICENSE` 但**文件不存在**（点开 404）、`## License` 也无许可全文——**MIT 授权实际未生效**。现补标准 MIT 全文（© 2026 coffe-d），并明确**授权范围**：仅覆盖作者原创代码与文档；名师方法论系公开材料蒸馏、权利归原讲授者；`_sources/` 原始资料不随仓库分发。<br>**修正 slogan 与设计初衷**：原 slogan「不给你唯一答案，给你两套解法和你的短板轨迹」偏成产品能力宣传、夹带错题库功能、**漏掉初衷核心**。改为「**三位名师，三面镜子——照出答案的多种可能，也照出你自己的那一种**」；并补三处：hero 点明**分工依据是口碑评价**、新增「**给的是建议，不是判决**」、`架构与安装` 增「**为什么是这三位名师**」（口碑评价而非理论推导／并置多师是为让同题显出不同解法／故产出定位是建议） |

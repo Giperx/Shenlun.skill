@@ -2,7 +2,7 @@ __pycache__/
 *.pyc
 .DS_Store
 
-# 仅分发用户明确指定的三份饮冰讲义TXT；图片、PDF和其他原料仍忽略
+# 分发指定的讲义TXT及参考书OCR；图片、PDF和其他原料仍忽略
 _sources/*
 !_sources/README.md
 !_sources/饮冰说申论/
@@ -12,6 +12,16 @@ _sources/饮冰说申论/讲义提取/*
 !_sources/饮冰说申论/讲义提取/PDF-7.txt
 !_sources/饮冰说申论/讲义提取/PDF-8.txt
 !_sources/饮冰说申论/讲义提取/PDF-9.txt
+!_sources/参考书/
+_sources/参考书/*
+!_sources/参考书/README.md
+!_sources/参考书/2027年高频考点话题.txt
+!_sources/参考书/2027年高频考点话题-OCR.txt
+!_sources/参考书/ocr-counts.json
+!_sources/参考书/ocr-cleaned-counts.json
+!_sources/参考书/ocr/
+_sources/参考书/ocr/*
+!_sources/参考书/ocr/[0-9][0-9][0-9].txt
 
 # 使用者个人错题库（含作答与成绩，不上传公开仓库）
 错题库/
