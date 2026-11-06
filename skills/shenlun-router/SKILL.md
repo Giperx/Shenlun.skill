@@ -124,7 +124,7 @@ description: >
 
 **表述升级资源**：规范表述替换表、成语升级、名言金句见 `../shared/references/expression-upgrade-rules.md`。
 
-**导出**：用户说"导出/保存/生成word/下载"时，调用 `../shared/scripts/export_docx.py` 写 .docx。否则**默认直接在对话中输出**。
+**导出按格式分派**：用户要求Word/docx时调用 `../shared/scripts/export_docx.py`；要求图像、图片、长图时，读 `../shared/references/image-export-rules.md` 并调用 `../shared/scripts/export_image.py`，大作文附原考试题干及要求，默认黑色宋体、保留加粗。仅说“导出/保存/下载”未指定格式时结合上下文选择已有目标格式，不能把明确的图片请求转成Word。否则**默认直接在对话中输出**。
 
 ---
 

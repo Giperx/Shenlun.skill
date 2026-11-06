@@ -2,8 +2,16 @@ __pycache__/
 *.pyc
 .DS_Store
 
-# 名师原始资料（讲义/逐字稿/笔记），通常有版权，不进公开仓库
-_sources/
+# 仅分发用户明确指定的三份饮冰讲义TXT；图片、PDF和其他原料仍忽略
+_sources/*
+!_sources/README.md
+!_sources/饮冰说申论/
+_sources/饮冰说申论/*
+!_sources/饮冰说申论/讲义提取/
+_sources/饮冰说申论/讲义提取/*
+!_sources/饮冰说申论/讲义提取/PDF-7.txt
+!_sources/饮冰说申论/讲义提取/PDF-8.txt
+!_sources/饮冰说申论/讲义提取/PDF-9.txt
 
 # 使用者个人错题库（含作答与成绩，不上传公开仓库）
 错题库/

@@ -15,6 +15,16 @@ def install(repo, destination, mode):
         required = source / ("references" if name == "shared" else "SKILL.md")
         if not required.exists():
             raise ValueError(f"Incomplete package: {required}")
+    # Standalone installs must retain original-text lookup and the image exporter.
+    bundled_files = [
+        "shenlun-dawenti/references/yinbing-source-text/INDEX.md",
+        *(f"shenlun-dawenti/references/yinbing-source-text/PDF-{n}.txt" for n in (7, 8, 9)),
+        "shared/scripts/export_image.py",
+        "shared/references/image-export-rules.md",
+    ]
+    for relative in bundled_files:
+        if not (repo / "skills" / relative).is_file():
+            raise ValueError(f"Incomplete package: skills/{relative}")
     destination = destination.expanduser().resolve()
     pending = []
     # Check all names before making any changes, including shared resources.
