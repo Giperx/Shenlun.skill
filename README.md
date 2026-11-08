@@ -248,14 +248,14 @@ python3 _tools/install_skills.py --dest /path/to/agent/skills --mode copy
 ### 大作文训练（`shenlun-dawenti`）
 
 - **论点提取**：判断题干能否直接拆解；再到重点材料提取概念或故事启示，必要时扩展其他材料；保留限定与关系，给出证据追溯。
-- **四法论证**：按分论点与材料逐段择法，完整作文至少一段用马哲；马哲显式点明原理。每段约300字、点实材料，压缩案例叙述，保留机制分析、具体对策与回扣；文后提炼少量可背诵、可迁移的句子或片段。
+- **四法论证**：按分论点与材料逐段择法，三个分论点优先组合论证、政府思维与一种适配马哲；马哲通常一段、整篇最多两段，顺序灵活，无真实依据不硬套。马哲显式点明原理。每段约300字、实质联系材料，允许概括主体并将事实融入分析；以说理为主、顺势提出对症做法，不统一套两栏部署。组合论证优先用核实的古语或重要论述引理；文后提炼少量可背诵、可迁移的句子或片段。
 - **改写适配**：固定论点和已知事实，先修推理再润色；拟议措施、推论与已有成绩分清，不移植原例统计数据。
 - **方法融合**：并列与纵向结构均按实际证明任务评价；AB/ABC作为题意适合时的结构工具，不是所有题目的强制入口。
 - **任务边界**：找论点只给论点，改段落只改段落；无需为了局部改写索要完整试卷。要求判扣题和整篇估分时才补题干。
 - **教学估分**：袁东四类文保留并标明来源；无题干只评内部自洽，文本不猜字迹。教师例文与第三方材料不记入个人错题。
 - **话题参考库**：九类83个话题入口，另有36条独立编写的候选判断及证明条件；用于认识话题和选择思路，不能替代题干材料或当作命题预测。第三方参考书与饮冰方法分别标明来源；另附141页按话题分页的OCR，安装者可直接查阅，原PDF和页图不上传。
 
-方法资源：[`话题参考库`](skills/shenlun-dawenti/references/topic-library/INDEX.md) · [`论点提取`](skills/shenlun-dawenti/references/yinbing-planning.md) · [`四法论证`](skills/shenlun-dawenti/references/yinbing-argumentation.md) · [`迁移示例`](skills/shenlun-dawenti/references/yinbing-examples.md) · [`来源与核对范围`](skills/shenlun-dawenti/references/yinbing-sources.md)。
+方法资源：[`话题参考库`](skills/shenlun-dawenti/references/topic-library/INDEX.md) · [`论点提取`](skills/shenlun-dawenti/references/yinbing-planning.md) · [`开头与首尾呼应`](skills/shenlun-dawenti/references/yinbing-opening-closing.md) · [`四法论证`](skills/shenlun-dawenti/references/yinbing-argumentation.md) · [`迁移示例`](skills/shenlun-dawenti/references/yinbing-examples.md) · [`来源与核对范围`](skills/shenlun-dawenti/references/yinbing-sources.md)。
 
 ### 命题预判
 - 基于历年真题趋势（60%）+ 当年时政热点（40%）
@@ -289,7 +289,7 @@ python3 _tools/export_image.py examples/2021-guokao-subprovincial/answer.md outp
 
 ### 资料文本的维护与安装
 
-三份饮冰TXT在 `_sources/饮冰说申论/讲义提取/` 维护，用以下工具同步到技能内。安装器会同时检查、安装三份文本、页码索引和图像导出工具；安装后的查阅与导出不依赖 `_sources` 或 `_tools` 目录。
+三份饮冰TXT在 `_sources/饮冰说申论/讲义提取/` 维护，用以下工具同步到技能内。安装器会同时检查、安装三份文本、页码索引和图像导出工具；安装后的查阅与导出不依赖 `_sources` 或 `_tools` 目录。补充分论点Word转写及教师截图对照直接维护在技能的 `references/yinbing-source-text/`，随复制安装保留，不由三份PDF同步工具覆盖。
 
 ```bash
 python3 _tools/sync_yinbing_sources.py
@@ -331,7 +331,7 @@ shenlun-master/
 │   │       ├── yinbing-examples.md       #   案例拆解与原创迁移
 │   │       ├── yinbing-sources.md        #   讲义页码与笔记图序
 │   │       ├── yinbing-paragraph-templates.md # 300字框架及背诵迁移
-│   │       ├── yinbing-source-text/      #   三份讲义TXT与物理页索引
+│   │       ├── yinbing-source-text/      #   PDF/Word讲义文本、页码与截图来源索引
 │   │       └── topic-library/            #   九类话题卡及 source-text/ 分页OCR
 │   └── shared/                           # 三者共用
 │       ├── references/
